@@ -1,0 +1,13 @@
+**CycloneDX Sunshine v0.9 is vulnerable to CSV Formula Injection.**
+
+**Summary:**
+CycloneDX Sunshine v0.9 is vulnerable to formula injection.  JSON file is uploaded to the application for SBOM Data visualization which further can be exported as csv file.  Values passed in parameters such as version is not filtered/sanitized for formula injection.
+
+**Steps to Reproduce**
+1. Download the JSON file at https://github.com/VishalSreenivas/Formula-Injection-in-CycloneDX-Sunshine/blob/main/payload.json
+2. Navigate to the application page and submit the cycloneDX JSON file.
+3. Using the application export functionality export it as CSV file.
+4. Open the CSV file, allow all popups and our payload is executed.
+
+**Remediation**
+Remove malicious inputs such as "=","+","-", and "@".  Executions at MS Excel can be avoided by inserting a single quote before the malicious content.
